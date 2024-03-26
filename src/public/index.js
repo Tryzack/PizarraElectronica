@@ -36,7 +36,7 @@ function init() {
 		let line = data.line;
 		context.beginPath();
 		context.lineWidth = 2;
-		context.strokeStyle = mouse.color;
+		context.strokeStyle = data.color;
 		context.moveTo(line[0].x * width, line[0].y * height);
 		context.lineTo(line[1].x * width, line[1].y * height);
 		context.stroke();
@@ -44,7 +44,7 @@ function init() {
 
 	function mainLoop() {
 		if (mouse.click && mouse.move && mouse.pos_prev) {
-			socket.emit("draw_line", { line: [mouse.pos, mouse.pos_prev] });
+			socket.emit("draw_line", { line: [mouse.pos, mouse.pos_prev], color: mouse.color });
 			mouse.move = false;
 		}
 		mouse.pos_prev = { x: mouse.pos.x, y: mouse.pos.y };
@@ -53,15 +53,25 @@ function init() {
 
 	mainLoop();
 
-	document.getElementById("black-button").addEventListener("click", () => {
+	//for each color inside document.getElementsById("color-container") add an event listener to get its backgroundColor
+	document
+		.getElementById("color-container")
+		.querySelectorAll("button")
+		.forEach((button) => {
+			button.addEventListener("click", () => {
+				mouse.color = button.style.backgroundColor;
+				console.log(mouse.color);
+				document.getElementById("selected-color").style.backgroundColor = mouse.color;
+			});
+		});
+
+	/* document.getElementById("black-button").addEventListener("click", () => {
 		mouse.color = "black";
-		socket.emit("change_color", { color: "black" });
 	});
 
 	document.getElementById("red-button").addEventListener("click", () => {
 		mouse.color = "red";
-		socket.emit("change_color", { color: "red" });
-	});
+	}); */
 
 	document.getElementById("clear-button").addEventListener("click", () => {
 		context.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,10 +80,6 @@ function init() {
 
 	socket.on("clear_canvas", () => {
 		context.clearRect(0, 0, canvas.width, canvas.height);
-	});
-
-	socket.on("change_color", (data) => {
-		mouse.color = data.color;
 	});
 }
 

@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Drawing Nodejs</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
- 
-  <div id="drawing-container">
-    <canvas id="drawing"></canvas>
-  </div>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Drawing Nodejs</title>
+		<link rel="stylesheet" href="/style.css" />
+	</head>
+	<body>
+		<div id="drawing-container">
+			<canvas id="drawing"></canvas>
+		</div>
 
-  <div id="color-buttons">
-    <button id="black-button">Black</button>
-    <button id="red-button">Red</button>
-    <button id="clear-button">Clear</button>
-  </div>
+		<div id="buttons-container">
+			<div id="selected-color"></div>
+			<div id="color-container">
+				<button id="black-button" style="background-color: black"></button>
+				<button id="red-button" style="background-color: red"></button>
+				<button id="green-button" style="background-color: green"></button>
+				<button id="blue-button" style="background-color: blue"></button>
+				<button id="yellow-button" style="background-color: darkgoldenrod"></button>
+				<button id="purple-button" style="background-color: purple"></button>
+				<button id="orange-button" style="background-color: orange"></button>
+				<button id="pink-button" style="background-color: pink"></button>
+				<button id="brown-button" style="background-color: brown"></button>
+			</div>
+			<button id="clear-button">Clear</button>
+		</div>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/index.js"></script>
-</body>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/index.js"></script>
+	</body>
 </html>
