@@ -149,9 +149,7 @@ canvas {
     grid-area: 3 / 2 / 4 / 3;
     position: absolute;
     width: 72%;
-    max-width: 1107px;
     height: 13%;
-    max-height: 112px;
     left: 2%;
     top: 84%;
     background: #131313;
