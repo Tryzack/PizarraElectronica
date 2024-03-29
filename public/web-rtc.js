@@ -13,7 +13,7 @@ function toggleMute() {
 }
 
 function webrtc() {
-	const conectionsGrid = document.getElementById("connected-users-container");
+	const conectionsGrid = document.getElementById("connected-users-list");
 	myPeer = new Peer(undefined, {
 		host: "/",
 		port: "8182",

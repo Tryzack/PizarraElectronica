@@ -1,8 +1,14 @@
+@font-face {
+    font-family: "Circular Spotify Text Medium";
+    src: url("../assets/fonts/CircularSpotifyText-Medium.otf")
+        format("opentype");
+}
+
 * {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Circular Spotify Text Medium", sans-serif;
 }
 
 html,
@@ -110,14 +116,33 @@ canvas {
 }
 
 #connected-users-container {
-    background-color: #353535;
+    background: #131313;
     display: grid;
     grid-template-rows: repeat(10, 1fr);
-    align-items: center;
-    justify-content: center;
     gap: 10px;
-    border-radius: 20px;
+    border-radius: 7px;
     height: 100%;
+}
+
+#connected-users-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border-radius: 7px;
+    height: 100%;
+    margin-left: 20px;
+    top: 20%;
+}
+
+#connected-users-list h1 {
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: "Circular Spotify Text Medium", sans-serif;
+}
+
+#connected-users-list div {
+    margin-top: 10px;
+    font-family: "Circular Spotify Text Medium", sans-serif;
 }
 
 #user-presenting-container {
@@ -134,6 +159,22 @@ canvas {
     top: 84%;
     background: #131313;
     border-radius: 7px;
+}
+
+#user-presenting {
+    position: absolute;
+    width: 23%;
+    height: 2.7%;
+    left: 3%;
+	top: 21%;
+
+    font-family: "Circular Spotify Text Medium", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 30px;
+
+    color: #ffffff;
 }
 
 #chat-container {
