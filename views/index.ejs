@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -8,13 +8,22 @@
 		<script>
 			ROOM_ID = "<%= roomId %>";
 		</script>
-		<script defer src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+		<script
+			defer
+			src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"
+		></script>
 	</head>
 	<body>
 		<div id="main-container">
 			<div id="tools-container">
 				<button class="toolContainer" id="pencil">
-					<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="48"
+						height="48"
+						viewBox="0 0 48 48"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<path
 							d="M13.6 42.8L11.7 40.9L9.60005 43C8.96672 43.6333 8.19205 43.9587 7.27605 43.976C6.36005 43.9933 5.60138 43.668 5.00005 43C4.36672 42.3667 4.05005 41.6 4.05005 40.7C4.05005 39.8 4.36672 39.0333 5.00005 38.4L7.10005 36.3L5.20005 34.3L32.9001 6.6C33.3001 6.2 33.7834 6 34.35 6C34.9167 6 35.4 6.2 35.8 6.6L41.4001 12.2C41.8001 12.6 42 13.0833 42 13.65C42 14.2167 41.8001 14.7 41.4001 15.1L13.6 42.8ZM22.2001 23L10.8 34.3L13.7 37.2L25 25.8L22.2001 23Z"
 							fill="white"
@@ -22,7 +31,13 @@
 					</svg>
 				</button>
 				<button class="toolContainer">
-					<svg width="48" height="50" viewBox="0 0 48 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="48"
+						height="50"
+						viewBox="0 0 48 50"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<g filter="url(#filter0_d_17_261)">
 							<path
 								d="M41.42 14.08C42.2 13.3 42.2 12 41.42 11.26L36.74 6.58C36 5.8 34.7 5.8 33.92 6.58L30.24 10.24L37.74 17.74M6 34.5V42H13.5L35.62 19.86L28.12 12.36L6 34.5Z"
@@ -39,20 +54,46 @@
 								filterUnits="userSpaceOnUse"
 								color-interpolation-filters="sRGB"
 							>
-								<feFlood flood-opacity="0" result="BackgroundImageFix" />
-								<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+								<feFlood
+									flood-opacity="0"
+									result="BackgroundImageFix"
+								/>
+								<feColorMatrix
+									in="SourceAlpha"
+									type="matrix"
+									values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+									result="hardAlpha"
+								/>
 								<feOffset dy="4" />
 								<feGaussianBlur stdDeviation="2" />
 								<feComposite in2="hardAlpha" operator="out" />
-								<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-								<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_17_261" />
-								<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_17_261" result="shape" />
+								<feColorMatrix
+									type="matrix"
+									values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+								/>
+								<feBlend
+									mode="normal"
+									in2="BackgroundImageFix"
+									result="effect1_dropShadow_17_261"
+								/>
+								<feBlend
+									mode="normal"
+									in="SourceGraphic"
+									in2="effect1_dropShadow_17_261"
+									result="shape"
+								/>
 							</filter>
 						</defs>
 					</svg>
 				</button>
 				<button class="toolContainer" id="eraser">
-					<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="48"
+						height="48"
+						viewBox="0 0 48 48"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<path
 							d="M32.4799 7.12001L42.38 17C43.94 18.58 43.94 21.1 42.38 22.68L24 41.06C22.4973 42.5583 20.4619 43.3997 18.34 43.3997C16.218 43.3997 14.1826 42.5583 12.68 41.06L5.61995 34C4.05995 32.42 4.05995 29.9 5.61995 28.32L26.82 7.12001C28.4 5.56001 30.92 5.56001 32.4799 7.12001ZM8.43995 31.16L15.52 38.22C17.08 39.8 19.6 39.8 21.18 38.22L28.24 31.16L18.34 21.26L8.43995 31.16Z"
 							fill="white"
@@ -60,7 +101,13 @@
 					</svg>
 				</button>
 				<button class="toolContainer">
-					<svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="35"
+						height="35"
+						viewBox="0 0 35 35"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<g clip-path="url(#clip0_17_252)">
 							<path
 								d="M35 2.91667V8.75C35 9.52355 34.6927 10.2654 34.1457 10.8124C33.5987 11.3594 32.8569 11.6667 32.0833 11.6667C31.3098 11.6667 30.5679 11.3594 30.0209 10.8124C29.474 10.2654 29.1667 9.52355 29.1667 8.75V5.83333H20.4167V29.1667H23.3333C24.1069 29.1667 24.8487 29.474 25.3957 30.0209C25.9427 30.5679 26.25 31.3098 26.25 32.0833C26.25 32.8569 25.9427 33.5987 25.3957 34.1457C24.8487 34.6927 24.1069 35 23.3333 35H11.6667C10.8931 35 10.1513 34.6927 9.60427 34.1457C9.05729 33.5987 8.75 32.8569 8.75 32.0833C8.75 31.3098 9.05729 30.5679 9.60427 30.0209C10.1513 29.474 10.8931 29.1667 11.6667 29.1667H14.5833V5.83333H5.83333V8.75C5.83333 9.52355 5.52604 10.2654 4.97906 10.8124C4.43208 11.3594 3.69021 11.6667 2.91667 11.6667C2.14312 11.6667 1.40125 11.3594 0.854272 10.8124C0.307291 10.2654 0 9.52355 0 8.75V2.91667C0 2.14312 0.307291 1.40125 0.854272 0.854272C1.40125 0.307291 2.14312 0 2.91667 0L32.0833 0C32.8569 0 33.5987 0.307291 34.1457 0.854272C34.6927 1.40125 35 2.14312 35 2.91667Z"
@@ -75,7 +122,13 @@
 					</svg>
 				</button>
 				<button class="toolContainer" id="selectColor">
-					<svg width="48" height="50" viewBox="0 0 48 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="48"
+						height="50"
+						viewBox="0 0 48 50"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<g filter="url(#filter0_d_17_254)">
 							<path
 								d="M35 24C34.2044 24 33.4413 23.6839 32.8787 23.1213C32.3161 22.5587 32 21.7956 32 21C32 20.2044 32.3161 19.4413 32.8787 18.8787C33.4413 18.3161 34.2044 18 35 18C35.7956 18 36.5587 18.3161 37.1213 18.8787C37.6839 19.4413 38 20.2044 38 21C38 21.7956 37.6839 22.5587 37.1213 23.1213C36.5587 23.6839 35.7956 24 35 24ZM29 16C28.2044 16 27.4413 15.6839 26.8787 15.1213C26.3161 14.5587 26 13.7956 26 13C26 12.2044 26.3161 11.4413 26.8787 10.8787C27.4413 10.3161 28.2044 10 29 10C29.7956 10 30.5587 10.3161 31.1213 10.8787C31.6839 11.4413 32 12.2044 32 13C32 13.7956 31.6839 14.5587 31.1213 15.1213C30.5587 15.6839 29.7956 16 29 16ZM19 16C18.2044 16 17.4413 15.6839 16.8787 15.1213C16.3161 14.5587 16 13.7956 16 13C16 12.2044 16.3161 11.4413 16.8787 10.8787C17.4413 10.3161 18.2044 10 19 10C19.7956 10 20.5587 10.3161 21.1213 10.8787C21.6839 11.4413 22 12.2044 22 13C22 13.7956 21.6839 14.5587 21.1213 15.1213C20.5587 15.6839 19.7956 16 19 16ZM13 24C12.2044 24 11.4413 23.6839 10.8787 23.1213C10.3161 22.5587 10 21.7956 10 21C10 20.2044 10.3161 19.4413 10.8787 18.8787C11.4413 18.3161 12.2044 18 13 18C13.7956 18 14.5587 18.3161 15.1213 18.8787C15.6839 19.4413 16 20.2044 16 21C16 21.7956 15.6839 22.5587 15.1213 23.1213C14.5587 23.6839 13.7956 24 13 24ZM24 6C19.2261 6 14.6477 7.89642 11.2721 11.2721C7.89642 14.6477 6 19.2261 6 24C6 28.7739 7.89642 33.3523 11.2721 36.7279C14.6477 40.1036 19.2261 42 24 42C24.7956 42 25.5587 41.6839 26.1213 41.1213C26.6839 40.5587 27 39.7957 27 39C27 38.22 26.7 37.52 26.22 37C25.76 36.46 25.46 35.76 25.46 35C25.46 34.2044 25.7761 33.4413 26.3387 32.8787C26.9013 32.3161 27.6644 32 28.46 32H32C34.6522 32 37.1957 30.9464 39.0711 29.0711C40.9464 27.1957 42 24.6522 42 22C42 13.16 33.94 6 24 6Z"
@@ -92,20 +145,46 @@
 								filterUnits="userSpaceOnUse"
 								color-interpolation-filters="sRGB"
 							>
-								<feFlood flood-opacity="0" result="BackgroundImageFix" />
-								<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+								<feFlood
+									flood-opacity="0"
+									result="BackgroundImageFix"
+								/>
+								<feColorMatrix
+									in="SourceAlpha"
+									type="matrix"
+									values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+									result="hardAlpha"
+								/>
 								<feOffset dy="4" />
 								<feGaussianBlur stdDeviation="2" />
 								<feComposite in2="hardAlpha" operator="out" />
-								<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-								<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_17_254" />
-								<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_17_254" result="shape" />
+								<feColorMatrix
+									type="matrix"
+									values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+								/>
+								<feBlend
+									mode="normal"
+									in2="BackgroundImageFix"
+									result="effect1_dropShadow_17_254"
+								/>
+								<feBlend
+									mode="normal"
+									in="SourceGraphic"
+									in2="effect1_dropShadow_17_254"
+									result="shape"
+								/>
 							</filter>
 						</defs>
 					</svg>
 				</button>
 				<button class="toolContainer" id="saveScreen">
-					<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="48"
+						height="48"
+						viewBox="0 0 48 48"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<path
 							d="M15 6V13.5C15 14.6935 15.4741 15.8381 16.318 16.682C17.1619 17.5259 18.3065 18 19.5 18H25.5C26.6935 18 27.8381 17.5259 28.682 16.682C29.5259 15.8381 30 14.6935 30 13.5V6H31.137C32.7282 6.00034 34.254 6.6327 35.379 7.758L40.242 12.621C41.3673 13.746 41.9997 15.2718 42 16.863V36C42 37.5913 41.3679 39.1174 40.2426 40.2426C39.1174 41.3679 37.5913 42 36 42V28.5C36 27.3065 35.5259 26.1619 34.682 25.318C33.8381 24.4741 32.6935 24 31.5 24H16.5C14.019 24 12 26.007 12 28.494V42C10.4087 42 8.88258 41.3679 7.75736 40.2426C6.63214 39.1174 6 37.5913 6 36V12C6 10.4087 6.63214 8.88258 7.75736 7.75736C8.88258 6.63214 10.4087 6 12 6H15ZM18 6V13.5C18 13.8978 18.158 14.2794 18.4393 14.5607C18.7206 14.842 19.1022 15 19.5 15H25.5C25.8978 15 26.2794 14.842 26.5607 14.5607C26.842 14.2794 27 13.8978 27 13.5V6H18ZM15 42H33V28.5C33 28.1022 32.842 27.7206 32.5607 27.4393C32.2794 27.158 31.8978 27 31.5 27H16.5C15.669 27 15 27.669 15 28.494V42Z"
 							fill="white"
@@ -126,7 +205,13 @@
 			<div id="user-presenting-container">
 				<div id="user-presenting">Nadie está dibujando</div>
 				<button id="mute-button">
-					<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="48"
+						height="48"
+						viewBox="0 0 48 48"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<path
 							d="M24 28C27.32 28 30 25.32 30 22V10C30 6.68 27.32 4 24 4C20.68 4 18 6.68 18 10V22C18 25.32 20.68 28 24 28ZM35.82 22C34.84 22 34.02 22.72 33.86 23.7C33.04 28.4 28.94 32 24 32C19.06 32 14.96 28.4 14.14 23.7C14.0694 23.2296 13.8332 22.7998 13.4739 22.4881C13.1145 22.1764 12.6557 22.0033 12.18 22C10.96 22 9.99997 23.08 10.18 24.28C11.16 30.28 15.96 34.98 22 35.84V40C22 41.1 22.9 42 24 42C25.1 42 26 41.1 26 40V35.84C28.943 35.4195 31.6755 34.0722 33.801 31.9935C35.9264 29.9149 37.3342 27.213 37.82 24.28C38.02 23.08 37.04 22 35.82 22Z"
 							fill="white"
@@ -143,9 +228,18 @@
 				<button id="red-button" style="background-color: red"></button>
 				<button id="green-button" style="background-color: green"></button>
 				<button id="blue-button" style="background-color: blue"></button>
-				<button id="yellow-button" style="background-color: darkgoldenrod"></button>
-				<button id="purple-button" style="background-color: purple"></button>
-				<button id="orange-button" style="background-color: orange"></button>
+				<button
+					id="yellow-button"
+					style="background-color: darkgoldenrod"
+				></button>
+				<button
+					id="purple-button"
+					style="background-color: purple"
+				></button>
+				<button
+					id="orange-button"
+					style="background-color: orange"
+				></button>
 				<button id="pink-button" style="background-color: pink"></button>
 				<button id="brown-button" style="background-color: brown"></button>
 				<button id="clear-button">Clear</button>

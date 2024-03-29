@@ -15,7 +15,8 @@ document
 		if (button.id === "clear-button") return;
 		button.addEventListener("click", () => {
 			color = button.style.backgroundColor;
-			document.getElementById("selected-color").style.backgroundColor = color;
+			document.getElementById("selected-color").style.backgroundColor =
+				color;
 			document.getElementById("buttons-wrapper").style.display = "none";
 			if (mouse.color !== eraser) {
 				mouse.color = color;
@@ -32,14 +33,16 @@ document.getElementById("clear-button").addEventListener("click", () => {
 document.getElementById("pencil").addEventListener("click", () => {
 	line_width = 2;
 	mouse.color = color;
-	document.getElementById("selected-color").style.backgroundColor = mouse.color;
+	document.getElementById("selected-color").style.backgroundColor =
+		mouse.color;
 	document.getElementById("buttons-wrapper").style.display = "none";
 });
 
 document.getElementById("eraser").addEventListener("click", () => {
 	mouse.color = eraser;
 	line_width = 20;
-	document.getElementById("selected-color").style.backgroundColor = mouse.color;
+	document.getElementById("selected-color").style.backgroundColor =
+		mouse.color;
 	document.getElementById("buttons-wrapper").style.display = "none";
 });
 

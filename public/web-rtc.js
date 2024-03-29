@@ -36,7 +36,12 @@ function webrtc() {
 				call.answer(stream);
 				const audio = document.createElement("audio");
 				call.on("stream", (userAudioStream) => {
-					addAudioStream(audio, userAudioStream, call.peer, call.metadata.name);
+					addAudioStream(
+						audio,
+						userAudioStream,
+						call.peer,
+						call.metadata.name,
+					);
 					peers[call.peer] = call;
 				});
 			});
@@ -57,7 +62,8 @@ function webrtc() {
 
 	socket.on("user-disconnected", (userId) => {
 		console.log("user disconnected: " + userId);
-		if (document.getElementById(userId)) document.getElementById(userId).remove();
+		if (document.getElementById(userId))
+			document.getElementById(userId).remove();
 		if (peers[userId]) {
 			peers[userId].close();
 			delete peers[userId];
@@ -71,7 +77,9 @@ function webrtc() {
 	function connectToNewUser(userId, stream, customName) {
 		let received = false;
 		function call() {
-			const call = myPeer.call(userId, stream, { metadata: { name: myPeer.customName } });
+			const call = myPeer.call(userId, stream, {
+				metadata: { name: myPeer.customName },
+			});
 			const audio = document.createElement("audio");
 			call.on("stream", (userAudioStream) => {
 				addAudioStream(audio, userAudioStream, userId, customName);
