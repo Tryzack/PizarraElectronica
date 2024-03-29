@@ -1,258 +1,278 @@
 @font-face {
-    font-family: "Circular Spotify Text Medium";
-    src: url("../assets/fonts/CircularSpotifyText-Medium.otf")
-        format("opentype");
+	font-family: "Circular Spotify Text Medium";
+	src: url("../assets/fonts/CircularSpotifyText-Medium.otf") format("opentype");
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    color: white;
-    font-family: "Circular Spotify Text Medium", sans-serif;
+	margin: 0;
+	padding: 0;
+	color: white;
+	font-family: "Circular Spotify Text Medium", sans-serif;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    background-color: #1e1e1e;
+	width: 100%;
+	height: 100%;
+	background-color: #1e1e1e;
 }
 
 canvas {
-    background-color: #ffffff;
+	background-color: #ffffff;
 }
 
 #modal {
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 #modal-content {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    align-items: center;
-    height: 200px;
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #353535;
-    border-radius: 10px;
-    padding: 20px;
+	display: flex;
+	gap: 20px;
+	flex-direction: column;
+	align-items: center;
+	height: 200px;
+	width: 300px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #353535;
+	border-radius: 10px;
+	padding: 20px;
 }
 
 #modal-content h1 {
-    font-size: medium;
+	font-size: medium;
 }
 
 #modal-content input {
-    color: black;
-    width: 100%;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    padding: 5px;
+	color: black;
+	width: 100%;
+	height: 30px;
+	border-radius: 5px;
+	border: none;
+	padding: 5px;
 }
 
 #modal-content button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
 }
 
 #main-container {
-    padding-top: 2vh;
-    height: 98%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 0.12fr 1fr 0.4fr;
-    grid-template-rows: 1fr 1fr 0.5fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+	padding-top: 2vh;
+	height: 98%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 0.12fr 1fr 0.4fr;
+	grid-template-rows: 1fr 1fr 0.5fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
 }
 
 #tools-container {
-    grid-area: 1/1/3/2;
-    display: grid;
-    grid-template-rows: repeat(7, 1fr);
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    height: 100%;
-    width: 100%;
+	grid-area: 1/1/3/2;
+	display: grid;
+	grid-template-rows: repeat(7, 1fr);
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+	height: 100%;
+	width: 100%;
 }
 
 .toolContainer {
-    width: 68px;
-    height: 68px;
-    border-radius: 100%;
-    background-color: #131313;
-    border-radius: 5px;
+	width: 68px;
+	height: 68px;
+	background-color: #131313;
+	border-radius: 5px;
 }
 
 #drawing-container {
-    grid-area: 1 / 2 / 3 / 3;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #000;
+	grid-area: 1 / 2 / 3 / 3;
+	width: 100%;
+	height: 100%;
+	border: 2px solid #000;
 }
 
 #connected-users-wrapper {
-    grid-area: 1 / 3 / 2 / 4;
-    width: calc(100% - 40px);
-    height: 39.6vh;
-    padding-left: 20px;
-    padding-right: 20px;
+	grid-area: 1 / 3 / 2 / 4;
+	width: calc(100% - 40px);
+	height: 39.6vh;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 #connected-users-container {
-    background: #131313;
-    display: grid;
-    grid-template-rows: repeat(10, 1fr);
-    gap: 10px;
-    border-radius: 7px;
-    height: 100%;
+	background: #131313;
+	display: grid;
+	grid-template-rows: repeat(10, 1fr);
+	gap: 10px;
+	border-radius: 7px;
+	height: 100%;
 }
 
 #connected-users-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    border-radius: 7px;
-    height: 100%;
-    margin-left: 20px;
-    top: 20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	border-radius: 7px;
+	height: 39.6vh;
+	margin-left: 20px;
+	top: 20%;
+	overflow-y: auto;
 }
 
 #connected-users-list h1 {
-    margin-top: 20px;
-    font-size: 20px;
-    font-family: "Circular Spotify Text Medium", sans-serif;
+	margin-top: 20px;
+	font-size: 20px;
+	font-family: "Circular Spotify Text Medium", sans-serif;
 }
 
 #connected-users-list div {
-    margin-top: 10px;
-    font-family: "Circular Spotify Text Medium", sans-serif;
+	margin-top: 10px;
+	font-family: "Circular Spotify Text Medium", sans-serif;
 }
 
 #user-presenting-container {
-    grid-area: 3 / 2 / 4 / 3;
-    position: absolute;
-    width: 72%;
-    height: 13%;
-    left: 2%;
-    top: 84%;
-    background: #131313;
-    border-radius: 7px;
+	grid-area: 3 / 2 / 4 / 3;
+	position: absolute;
+	width: 72%;
+	height: 13%;
+	left: 2%;
+	top: 84%;
+	background: #131313;
+	border-radius: 7px;
+	display: flex;
 }
 
 #user-presenting {
-    position: absolute;
-    width: 23%;
-    height: 2.7%;
-    left: 3%;
+	position: absolute;
+	width: 23%;
+	height: 2.7%;
+	left: 3%;
 	top: 21%;
 
-    font-family: "Circular Spotify Text Medium", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 21px;
-    line-height: 30px;
+	font-family: "Circular Spotify Text Medium", sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 21px;
+	line-height: 30px;
 
-    color: #ffffff;
+	color: #ffffff;
+}
+
+#mute-button {
+	align-self: center;
+	position: absolute;
+	width: 68px;
+	height: 68px;
+	right: 3%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #1d1d1d;
+	border-radius: 5px;
 }
 
 #chat-container {
-    grid-area: 2 / 3 / 4 / 4;
-    width: 100%;
-    height: 100%;
+	grid-area: 2 / 3 / 4 / 4;
+	width: 100%;
+	height: 100%;
 }
 
 #drawing {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #buttons-wrapper {
-    position: absolute;
-    display: none;
-    top: 60%;
-    left: 10%;
-    width: 200px;
-    height: 250px;
-    background-color: #353535;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
+	position: absolute;
+	display: none;
+	top: 60%;
+	left: 10%;
+	width: 200px;
+	height: 250px;
+	background-color: #353535;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
 }
 
 #buttons-container {
-    background-color: #2b2b2b;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 140px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-    gap: 15px;
-    border-radius: 10px;
+	background-color: #2b2b2b;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 140px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	justify-items: center;
+	gap: 15px;
+	border-radius: 10px;
 }
 
 #selected-color {
-    justify-self: center;
-    grid-column: span 3;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    border: 1px solid #925a7d;
-    background-color: black;
+	justify-self: center;
+	grid-column: span 3;
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	border: 1px solid #925a7d;
+	background-color: black;
 }
 
 #color-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
 }
 
 #buttons-container button {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    border: 1px solid #000;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	border: 1px solid #000;
 }
 
 #buttons-container #clear-button {
-    justify-self: center;
-    grid-column: span 3;
-    font-size: 16px;
-    text-align: center;
-    background-color: #4caf50;
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid black;
-    width: 75px;
+	justify-self: center;
+	grid-column: span 3;
+	font-size: 16px;
+	text-align: center;
+	background-color: #4caf50;
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 1px solid black;
+	width: 75px;
 }
 
 #color-container button:hover {
-    filter: brightness(50%);
+	filter: brightness(50%);
 }
 #clear-button:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
 
 #clear-button:active {
-    background-color: #3e8e41;
+	background-color: #3e8e41;
+}
+
+.audioUser {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex-direction: row;
 }

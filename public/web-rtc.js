@@ -12,6 +12,8 @@ function toggleMute() {
 	socket.emit("mute-status", myPeer.id, isMuted);
 }
 
+document.getElementById("mute-button").addEventListener("click", toggleMute);
+
 function webrtc() {
 	const conectionsGrid = document.getElementById("connected-users-list");
 	myPeer = new Peer(undefined, {
@@ -34,7 +36,12 @@ function webrtc() {
 				call.answer(stream);
 				const audio = document.createElement("audio");
 				call.on("stream", (userAudioStream) => {
-					addAudioStream(audio, userAudioStream, call.peer, call.metadata.name);
+					addAudioStream(
+						audio,
+						userAudioStream,
+						call.peer,
+						call.metadata.name,
+					);
 					peers[call.peer] = call;
 				});
 			});
@@ -55,7 +62,8 @@ function webrtc() {
 
 	socket.on("user-disconnected", (userId) => {
 		console.log("user disconnected: " + userId);
-		if (document.getElementById(userId)) document.getElementById(userId).remove();
+		if (document.getElementById(userId))
+			document.getElementById(userId).remove();
 		if (peers[userId]) {
 			peers[userId].close();
 			delete peers[userId];
@@ -69,7 +77,9 @@ function webrtc() {
 	function connectToNewUser(userId, stream, customName) {
 		let received = false;
 		function call() {
-			const call = myPeer.call(userId, stream, { metadata: { name: myPeer.customName } });
+			const call = myPeer.call(userId, stream, {
+				metadata: { name: myPeer.customName },
+			});
 			const audio = document.createElement("audio");
 			call.on("stream", (userAudioStream) => {
 				addAudioStream(audio, userAudioStream, userId, customName);
@@ -91,13 +101,36 @@ function webrtc() {
 
 	function addAudioStream(audio, stream, id, name) {
 		const div = document.createElement("div");
+		const p = document.createElement("p");
+		const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		const div2 = document.createElement("div");
+		div2.style.width = "10px";
+		div2.style.height = "10px";
+		div2.style.backgroundColor = "green";
+		div2.style.borderRadius = "100%";
 		div.id = id;
 		div.className = "audioUser";
-		div.innerHTML = name ? name : myPeer.customName;
+		p.innerHTML = name ? name : myPeer.customName;
+		p.style.flexBasis = "70%";
+		p.style.width = "100%";
+		svg.setAttribute("width", "30");
+		svg.setAttribute("height", "30");
+		svg.setAttribute("viewBox", "0 0 30 30");
+		svg.setAttribute("fill", "none");
+		svg.style.flexBasis = "10%";
+		/* svg.setAttribute("xmlns", "http://www.w3.org/2000/svg"); */
+		svg.innerHTML = `
+		<path d="M15 16.25C18.4518 16.25 21.25 13.4518 21.25 10C21.25 6.54822 18.4518 3.75 15 3.75C11.5482 3.75 8.75 6.54822 8.75 10C8.75 13.4518 11.5482 16.25 15 16.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M25 26.25C25 23.5978 23.9464 21.0543 22.0711 19.1789C20.1957 17.3036 17.6522 16.25 15 16.25C12.3478 16.25 9.8043 17.3036 7.92893 19.1789C6.05357 21.0543 5 23.5978 5 26.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		`;
+		svg.style.flexBasis = "10%";
 		audio.srcObject = stream;
 		audio.addEventListener("loadedmetadata", () => {
 			audio.play();
 		});
+		div.append(svg);
+		div.append(p);
+		div.append(div2);
 		div.append(audio);
 		conectionsGrid.append(div);
 	}
