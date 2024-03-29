@@ -110,14 +110,30 @@ canvas {
 }
 
 #connected-users-container {
-    background-color: #353535;
+    background: #131313;
     display: grid;
     grid-template-rows: repeat(10, 1fr);
-    align-items: center;
-    justify-content: center;
     gap: 10px;
-    border-radius: 20px;
+    border-radius: 7px;
     height: 100%;
+}
+
+#connected-users-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	border-radius: 7px;
+	height: 100%;
+	margin-left: 20px;
+	top: 20%;
+}
+
+#connected-users-list h1 {
+	margin-top: 20px;
+}
+
+#connected-users-list div {
+	margin-top: 10px;
 }
 
 #user-presenting-container {
