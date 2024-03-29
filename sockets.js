@@ -16,9 +16,9 @@ module.exports = (io) => {
 			io.emit("clear_canvas");
 		});
 
-		socket.on("join-room", (roomId, userId) => {
+		socket.on("join-room", (roomId, userId, customName) => {
 			socket.join(roomId);
-			socket.to(roomId).emit("user-connected", userId);
+			socket.to(roomId).emit("user-connected", userId, customName);
 
 			socket.on("disconnect", () => {
 				socket.to(roomId).emit("user-disconnected", userId);
