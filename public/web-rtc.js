@@ -23,8 +23,6 @@ function webrtc() {
 				call.answer(stream);
 				const audio = document.createElement("audio");
 				call.on("stream", (userAudioStream) => {
-					// todo: add name
-					console.log(call);
 					addAudioStream(audio, userAudioStream, call.peer, call.metadata.name);
 					peers[call.peer] = call;
 				});
