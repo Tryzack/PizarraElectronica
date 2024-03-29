@@ -70,16 +70,6 @@ modalButton.addEventListener("click", () => {
 });
 
 
-let draggableText = {
-    text: "", 
-    x: 50, 
-    y: 50, 
-    isDragging: false, 
-    offsetX: 0, 
-    offsetY: 0, 
-    fontSize: 20, 
-    fontFamily: "Arial" 
-};
 
 modalContent.appendChild(h1);
 modalContent.appendChild(modalInput);
