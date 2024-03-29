@@ -1,3 +1,5 @@
+let peers = {}; // Use let instead of const to allow modification
+
 function webrtc() {
 	const conectionsGrid = document.getElementById("connected-users-container");
 	const myPeer = new Peer(undefined, {
@@ -5,7 +7,7 @@ function webrtc() {
 		port: "8182",
 	});
 
-	let peers = {}; // Use let instead of const to allow modification
+	myPeer.customName = name;
 
 	const myAudio = document.createElement("audio");
 	myAudio.muted = true;
@@ -18,18 +20,17 @@ function webrtc() {
 			addAudioStream(myAudio, stream);
 
 			myPeer.on("call", (call) => {
-				console.log("call received from: " + call.peer);
 				call.answer(stream);
 				const audio = document.createElement("audio");
 				call.on("stream", (userAudioStream) => {
-					addAudioStream(audio, userAudioStream, call.peer);
+					addAudioStream(audio, userAudioStream, call.peer, call.metadata.name);
 					peers[call.peer] = call;
 				});
 			});
 
-			socket.on("user-connected", (userId) => {
-				console.log("user connected: " + userId);
-				connectToNewUser(userId, stream);
+			socket.on("user-connected", (userId, customName) => {
+				console.log("user connected: " + userId + "\nName: " + customName);
+				connectToNewUser(userId, stream, customName);
 			});
 		});
 
@@ -43,14 +44,14 @@ function webrtc() {
 	});
 
 	myPeer.on("open", (id) => {
-		socket.emit("join-room", ROOM_ID, id);
+		socket.emit("join-room", ROOM_ID, id, myPeer.customName);
 	});
 
-	function addAudioStream(audio, stream, id) {
+	function addAudioStream(audio, stream, id, name) {
 		const div = document.createElement("div");
 		div.id = id;
 		div.className = "audioUser";
-		div.innerHTML = id ? id : name;
+		div.innerHTML = name ? name : myPeer.customName;
 		audio.srcObject = stream;
 		audio.addEventListener("loadedmetadata", () => {
 			audio.play();
@@ -59,13 +60,13 @@ function webrtc() {
 		conectionsGrid.append(div);
 	}
 
-	function connectToNewUser(userId, stream) {
+	function connectToNewUser(userId, stream, customName) {
 		let received = false;
 		function call() {
-			const call = myPeer.call(userId, stream);
+			const call = myPeer.call(userId, stream, { metadata: { name: myPeer.customName } });
 			const audio = document.createElement("audio");
 			call.on("stream", (userAudioStream) => {
-				addAudioStream(audio, userAudioStream, userId);
+				addAudioStream(audio, userAudioStream, userId, customName);
 				received = true;
 			});
 			call.on("close", () => {
@@ -76,10 +77,10 @@ function webrtc() {
 
 		call();
 		setTimeout(() => {
-			if (!received) call();
+			if (!received) {
+				call();
+			}
 		}, 500);
-
-		// If the call is not answered in 15 seconds, retry
 	}
 
 	myPeer.on("error", (error) => {
