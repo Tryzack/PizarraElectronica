@@ -10,6 +10,14 @@ function toggleMute() {
 		if (track.kind === "audio") track.enabled = !isMuted;
 	});
 	socket.emit("mute-status", myPeer.id, isMuted);
+
+	const circle = document.getElementById(myPeer.id);
+	if (circle) {
+		const div2 = circle.querySelector(".circle");
+		if (div2) {
+			div2.style.backgroundColor = isMuted ? "red" : "#55D55A";
+		}
+	}
 }
 
 document.getElementById("mute-button").addEventListener("click", toggleMute);
@@ -53,11 +61,13 @@ function webrtc() {
 		});
 
 	socket.on("mute-status", (userId, isMuted) => {
-		// mi gente, aqui se debe de hacer algo para mostrar que el usuario esta muteado
-		// por ejemplo poner un icono de mute en su conexion, lo dejo a su imaginacion
-		// para acceder al usuario que esta muteado pueden usar el id del usuario en peers
-		// peers[userId].metadata.name es el nombre del usuario que esta muteado y el div que contiene
-		// el audio del usuario tiene el id del usuario en userId asi que pueden acceder a el con document.getElementById(userId)
+		const circle = document.getElementById(userId);
+		if (circle) {
+			const div2 = circle.querySelector(".circle");
+			if (div2) {
+				div2.style.backgroundColor = isMuted ? "red" : "#55D55A";
+			}
+		}
 	});
 
 	socket.on("user-disconnected", (userId) => {
@@ -104,9 +114,10 @@ function webrtc() {
 		const p = document.createElement("p");
 		const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 		const div2 = document.createElement("div");
+		div2.className = "circle";
 		div2.style.width = "10px";
 		div2.style.height = "10px";
-		div2.style.backgroundColor = "green";
+		div2.style.backgroundColor = "#55D55A";
 		div2.style.borderRadius = "100%";
 		div.id = id;
 		div.className = "audioUser";
