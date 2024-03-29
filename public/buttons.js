@@ -46,3 +46,31 @@ document.getElementById("eraser").addEventListener("click", () => {
 socket.on("clear_canvas", () => {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 });
+
+//show modal that ask for the name of the user and wont let the user draw until the name is set
+
+let modal = document.createElement("modal");
+modal.id = "modal";
+let modalContent = document.createElement("div");
+modalContent.id = "modal-content";
+let modalInput = document.createElement("input");
+let modalButton = document.createElement("button");
+let h1 = document.createElement("h1");
+h1.innerText = "Welcome to the whiteboard! Please enter your name";
+modalInput.setAttribute("type", "text");
+modalInput.setAttribute("placeholder", "Enter your name");
+modalButton.innerText = "Submit";
+
+modalButton.addEventListener("click", () => {
+	if (modalInput.value) {
+		modal.style.display = "none";
+		name = modalInput.value;
+		webrtc();
+	}
+});
+
+modalContent.appendChild(h1);
+modalContent.appendChild(modalInput);
+modalContent.appendChild(modalButton);
+modal.appendChild(modalContent);
+document.body.appendChild(modal);

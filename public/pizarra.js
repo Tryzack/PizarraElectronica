@@ -1,3 +1,5 @@
+let name = "";
+
 let mouse = {
 	click: false,
 	move: false,
