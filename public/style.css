@@ -1,8 +1,13 @@
+@font-face {
+    font-family: 'Circular Spotify Text Medium';
+    src: url('../assets/fonts/CircularSpotifyText-Medium.otf') format('opentype');
+}
+
 * {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Circular Spotify Text Medium', sans-serif;
 }
 
 html,
@@ -130,10 +135,13 @@ canvas {
 
 #connected-users-list h1 {
 	margin-top: 20px;
+	font-size: 20px;
+	font-family: 'Circular Spotify Text Medium', sans-serif;
 }
 
 #connected-users-list div {
 	margin-top: 10px;
+	font-family: 'Circular Spotify Text Medium', sans-serif;
 }
 
 #user-presenting-container {
