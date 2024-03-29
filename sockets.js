@@ -39,6 +39,10 @@ module.exports = (io) => {
 					delete rooms[roomId];
 				}
 			});
+
+			socket.on("mute-status", (userId, isMuted) => {
+				io.to(roomId).emit("mute-status", userId, isMuted);
+			});
 		});
 	});
 };
