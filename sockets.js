@@ -24,7 +24,7 @@ module.exports = (io) => {
 					rooms[roomId].line_history = [];
 				}
 				rooms[roomId].line_history.push({ line: data.line, color: data.color, width: data.size });
-				io.to(roomId).emit("draw_line", { line: data.line, color: data.color, width: data.size });
+				io.to(roomId).emit("draw_line", { line: data.line, color: data.color, width: data.size, userId: data.userId });
 			});
 
 			socket.on("clear_canvas", () => {

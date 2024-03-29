@@ -44,11 +44,13 @@ socket.on("draw_line", (data) => {
 	context.moveTo(line[0].x * width, line[0].y * height);
 	context.lineTo(line[1].x * width, line[1].y * height);
 	context.stroke();
+	console.log(document.getElementById(data.userId));
 });
 
 function mainLoop() {
 	if (mouse.click && mouse.move && mouse.pos_prev) {
-		socket.emit("draw_line", { line: [mouse.pos, mouse.pos_prev], color: mouse.color, size: line_width });
+		socket.emit("draw_line", { line: [mouse.pos, mouse.pos_prev], color: mouse.color, size: line_width, userId: myPeer.id });
+		console.log(myPeer.id);
 		mouse.move = false;
 	}
 	mouse.pos_prev = { x: mouse.pos.x, y: mouse.pos.y };

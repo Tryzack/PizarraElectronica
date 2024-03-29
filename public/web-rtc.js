@@ -1,8 +1,9 @@
 let peers = {}; // Use let instead of const to allow modification
+let myPeer;
 
 function webrtc() {
 	const conectionsGrid = document.getElementById("connected-users-container");
-	const myPeer = new Peer(undefined, {
+	myPeer = new Peer(undefined, {
 		host: "/",
 		port: "8182",
 	});
@@ -17,7 +18,7 @@ function webrtc() {
 			audio: true,
 		})
 		.then((stream) => {
-			addAudioStream(myAudio, stream);
+			addAudioStream(myAudio, stream, myPeer.id, myPeer.customName);
 
 			myPeer.on("call", (call) => {
 				call.answer(stream);
