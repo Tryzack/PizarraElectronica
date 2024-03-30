@@ -25,8 +25,8 @@ document
 	});
 
 document.getElementById("clear-button").addEventListener("click", () => {
-	context.fillStyle = 'white';
-    context.fillRect(0, 0, canvas.width, canvas.height);
+	context.fillStyle = "white";
+	context.fillRect(0, 0, canvas.width, canvas.height);
 
 	socket.emit("clear_canvas");
 	document.getElementById("buttons-wrapper").style.display = "none";
@@ -49,8 +49,8 @@ document.getElementById("eraser").addEventListener("click", () => {
 });
 
 socket.on("clear_canvas", () => {
-	context.fillStyle = 'white';
-    context.fillRect(0, 0, canvas.width, canvas.height);
+	context.fillStyle = "white";
+	context.fillRect(0, 0, canvas.width, canvas.height);
 });
 
 //show modal that ask for the name of the user and wont let the user draw until the name is set
@@ -75,73 +75,74 @@ modalButton.addEventListener("click", () => {
 	}
 });
 
-let isTyping = false; 
-let textButton = document.getElementById('text');
+let isTyping = false;
+let textButton = document.getElementById("text");
 
 // Evento de clic para activar la inserción de texto
-textButton.addEventListener('click', function() {
-    isTyping = true;
+textButton.addEventListener("click", function () {
+	isTyping = true;
 });
 
-canvas.addEventListener('click', handleCanvasClick);
-canvas.addEventListener('keypress', handleKeyPress);
+canvas.addEventListener("click", handleCanvasClick);
+canvas.addEventListener("keypress", handleKeyPress);
 
 function handleCanvasClick(event) {
-    if (isTyping) {
-        let rect = canvas.getBoundingClientRect();
-        let mouseX = event.clientX - rect.left;
-        let mouseY = event.clientY - rect.top;
-        
-        let inputText = prompt("Ingresa el texto:");
-        if (inputText) {
-            context.font = "20px Arial";
-            let textWidth = context.measureText(inputText).width;
-            let textHeight = 20; 
-          
-            context.fillText(inputText, mouseX - textWidth / 2, mouseY + textHeight / 2); 
-            isTyping = false; 
-        }
-    }
+	if (isTyping) {
+		line_width = 0;
+		let rect = canvas.getBoundingClientRect();
+		let scaleX = canvas.width / rect.width;
+		let scaleY = canvas.height / rect.height;
+		let mouseX = (event.clientX - rect.left) * scaleX;
+		let mouseY = (event.clientY - rect.top) * scaleY;
+
+		let inputText = prompt("Enter the text:");
+		if (inputText) {
+			context.font = "30px Arial";
+			context.fillStyle = color;
+			let textWidth = context.measureText(inputText).width;
+			let textHeight = 30;
+
+			let textX = mouseX - textWidth / 2;
+			let textY = mouseY - textHeight / 2;
+
+			isTyping = false;
+			socket.emit("draw_text", {
+				text: inputText,
+				x: textX / width,
+				y: textY / height,
+				color: color,
+			});
+			line_width = 2;
+		}
+	}
 }
 
 function handleKeyPress(event) {
-    if (isTyping && event.key === 'Enter') {
-        event.preventDefault();
-        isTyping = false;
-    }
+	if (isTyping && event.key === "Enter") {
+		event.preventDefault();
+		isTyping = false;
+	}
 }
 
-
-
-
-
-
-// Función SaveScreen
-
-// Función para guardar el contenido del canvas como una imagen
 function saveCanvasAsImage() {
-    let canvas = document.getElementById('drawing');
-    let context = canvas.getContext('2d');
-    let link = document.createElement('a');
+	let canvas = document.getElementById("drawing");
+	let context = canvas.getContext("2d");
+	let link = document.createElement("a");
 
-    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+	let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
+	let image = canvas.toDataURL("image/png");
 
-    let image = canvas.toDataURL('image/png');
+	context.putImageData(imageData, 0, 0);
 
-    context.putImageData(imageData, 0, 0);
+	link.href = image;
+	link.download = "canvas_image.png";
 
-    link.href = image;
-    link.download = 'canvas_image.png';
-
-   
-    link.click();
+	link.click();
 }
-document.getElementById('saveScreen').addEventListener('click', saveCanvasAsImage);
-
-
-
-
+document
+	.getElementById("saveScreen")
+	.addEventListener("click", saveCanvasAsImage);
 
 modalContent.appendChild(h1);
 modalContent.appendChild(modalInput);

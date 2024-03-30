@@ -14,6 +14,14 @@ module.exports = (io) => {
 						width: rooms[roomId].line_history[i].width,
 					});
 				}
+				for (let i in rooms[roomId].text_history) {
+					socket.emit("draw_text", {
+						text: rooms[roomId].text_history[i].text,
+						color: rooms[roomId].text_history[i].color,
+						x: rooms[roomId].text_history[i].x,
+						y: rooms[roomId].text_history[i].y,
+					});
+				}
 			}
 
 			socket.join(roomId);
@@ -36,6 +44,24 @@ module.exports = (io) => {
 					width: data.size,
 					userId: data.userId,
 					userName: data.userName,
+				});
+			});
+
+			socket.on("draw_text", (data) => {
+				if (!rooms[roomId].text_history) {
+					rooms[roomId].text_history = [];
+				}
+				rooms[roomId].text_history.push({
+					text: data.text,
+					color: data.color,
+					x: data.x,
+					y: data.y,
+				});
+				io.to(roomId).emit("draw_text", {
+					text: data.text,
+					color: data.color,
+					x: data.x,
+					y: data.y,
 				});
 			});
 

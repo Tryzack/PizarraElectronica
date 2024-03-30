@@ -21,8 +21,8 @@ let socket = io();
 canvas.width = width;
 canvas.height = height;
 
-context.fillStyle = 'white';
- context.fillRect(0, 0, canvas.width, canvas.height);
+context.fillStyle = "white";
+context.fillRect(0, 0, canvas.width, canvas.height);
 
 canvas.addEventListener("mousedown", (e) => {
 	mouse.click = true;
@@ -49,6 +49,13 @@ socket.on("draw_line", (data) => {
 	context.stroke();
 	document.getElementById("user-presenting").innerText =
 		data.userName + " está dibujando";
+});
+
+socket.on("draw_text", (data) => {
+	context.font = "30px Arial";
+	context.fillStyle = data.color;
+	context.fillText(data.text, data.x * width, data.y * height);
+	console.log(data);
 });
 
 function mainLoop() {
