@@ -169,7 +169,7 @@ function sendMessage() {
 	const messageInput = document.getElementById("message-input");
 	const message = messageInput.value.trim();
 	if (message !== "") {
-		const currentTime = getCurrentTime(); // Obtener la hora actual en el nuevo formato
+		const currentTime = getCurrentTime();
 		socket.emit("send_message", {
 			name: myPeer.customName,
 			message,
@@ -191,27 +191,25 @@ function appendMessage(userName, message, time) {
     const messagesContainer = document.getElementById("messages-container");
     const messageElement = document.createElement("div");
     messageElement.classList.add("message");
-    messageElement.style.margin = "20px"; // Agregamos un margen de 5px alrededor de cada mensaje
+    messageElement.style.margin = "20px";
 
-    // Creamos un elemento adicional para contener la hora
     const timeContainer = document.createElement("div");
     timeContainer.classList.add("time-container");
     timeContainer.innerText = time;
 
     messageElement.innerHTML = `<strong>${userName}</strong><p>${message}</p>`;
-    messageElement.appendChild(timeContainer); // Agregamos el contenedor de la hora como hijo del mensaje
+    messageElement.appendChild(timeContainer);
 
-    // Aplicamos estilos
-    messageElement.style.display = "flex"; // Utilizamos flexbox para alinear elementos
-    messageElement.style.flexDirection = "column"; // Apilamos elementos verticalmente
-    messageElement.style.alignItems = "flex-start"; // Alineamos los elementos a la izquierda
-    messageElement.style.textAlign = "left"; // Alineamos el texto del mensaje a la izquierda
-    messageElement.style.position = "relative"; // Hacemos el contenedor de mensaje relativo para posicionar la hora
-    timeContainer.style.position = "absolute"; // Hacemos el contenedor de la hora absoluto para posicionarlo
-    timeContainer.style.right = "0"; // Alineamos la hora a la derecha
-    timeContainer.style.top = "50%"; // Centramos verticalmente la hora
-    timeContainer.style.transform = "translateY(-50%)"; // Corregimos el centrado vertical de la hora
-    timeContainer.style.color = "#999999"; // Cambiamos el color de la hora
+    messageElement.style.display = "flex";
+    messageElement.style.flexDirection = "column";
+    messageElement.style.alignItems = "flex-start";
+    messageElement.style.textAlign = "left";
+    messageElement.style.position = "relative";
+    timeContainer.style.position = "absolute";
+    timeContainer.style.right = "0";
+    timeContainer.style.top = "50%";
+    timeContainer.style.transform = "translateY(-50%)";
+    timeContainer.style.color = "#999999";
 
     messagesContainer.appendChild(messageElement);
 }
