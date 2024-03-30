@@ -145,58 +145,58 @@ canvas {
 }
 
 #chat-container-wrapper {
-    grid-area: 2 / 3 / 4 / 4;
-    width: calc(100% - 40px);
-    height: 90.9%;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 5%;
+	grid-area: 2 / 3 / 4 / 4;
+	width: calc(100% - 40px);
+	height: 90.9%;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 5%;
 }
 
 #chat-container {
-    background: #131313;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 7px;
-    height: 100%;
+	background: #131313;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 7px;
+	height: 100%;
 }
 
 #chat-subcontainer {
-    display: flex;
-    flex-direction: column;
-    border-radius: 7px;
-    height: 100%;
+	display: flex;
+	flex-direction: column;
+	border-radius: 7px;
+	height: 100%;
 	width: 90%;
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 #chat-subcontainer h1 {
-    font-size: 20px;
-    font-family: "Circular Spotify Text Medium", sans-serif;
+	font-size: 20px;
+	font-family: "Circular Spotify Text Medium", sans-serif;
 }
 
 #messages-container {
-    width: 100%;
-    height: 39vh;
-    background: #000000;
-    border-radius: 7px;
-    margin-top: 10px;
-    overflow-y: auto;
+	width: 100%;
+	height: 39vh;
+	background: #000000;
+	border-radius: 7px;
+	margin-top: 10px;
+	overflow-y: auto;
 }
 
 #input-container {
-    width: 100%;
-    max-width: 400px;
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	width: 100%;
+	max-width: 400px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 #message-input {
-    flex: 1;
-    margin-right: 10px;
+	flex: 1;
+	margin-right: 10px;
 	color: black;
 	border: none;
 	border-radius: 7px;
@@ -216,22 +216,45 @@ canvas {
 	background: #131313;
 	border-radius: 7px;
 	display: flex;
+	justify-content: flex-start;
+}
+
+#user-presenting-subcontainer {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	margin-bottom: 40px;
+	margin-left: 25px;
+	gap: 10px;
 }
 
 #user-presenting {
-	position: absolute;
-	width: 23%;
-	height: 2.7%;
-	left: 3%;
-	top: 21%;
-
 	font-family: "Circular Spotify Text Medium", sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 21px;
 	line-height: 30px;
-
 	color: #ffffff;
+	margin-left: 8px;
+}
+
+#user-circle {
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+	background-color: #ffeb32;
+	animation: pulse 1s infinite alternate; /* Define la animación */
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1); /* Tamaño normal */
+		opacity: 1; /* Opacidad completa */
+	}
+	100% {
+		transform: scale(1.2); /* Aumenta un poco el tamaño */
+		opacity: 0.5; /* Opacidad reducida */
+	}
 }
 
 #mute-button {
@@ -351,18 +374,6 @@ canvas {
 	background-color: #3e8e41;
 }
 
-.audioUser {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	flex-direction: row;
-}
-.audioUser {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	flex-direction: row;
-}
 .audioUser {
 	display: flex;
 	align-items: center;
