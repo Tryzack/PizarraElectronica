@@ -150,3 +150,67 @@ function webrtc() {
 		console.error("Peer error:", error);
 	});
 }
+
+function getCurrentTime() {
+	const currentTime = new Date();
+	let hours = currentTime.getHours();
+	let minutes = currentTime.getMinutes();
+	const ampm = hours >= 12 ? "PM" : "AM";
+	hours = hours % 12;
+	hours = hours ? hours : 12; // Hacer que las 0 horas se muestren como 12
+	minutes = minutes < 10 ? "0" + minutes : minutes; // Añadir un 0 delante de los minutos si es menor que 10
+	const formattedTime = hours + ":" + minutes + " " + ampm;
+	return formattedTime;
+}
+
+document.getElementById("send-button").addEventListener("click", sendMessage);
+
+function sendMessage() {
+	const messageInput = document.getElementById("message-input");
+	const message = messageInput.value.trim();
+	if (message !== "") {
+		const currentTime = getCurrentTime();
+		socket.emit("send_message", {
+			name: myPeer.customName,
+			message,
+			time: currentTime,
+		});
+		messageInput.value = "";
+		appendMessage(myPeer.customName, message, currentTime);
+	}
+}
+
+socket.on("receive_message", ({ name, message, time }) => {
+	const userName = name ? name : userId;
+	if (userName !== myPeer.customName) {
+		appendMessage(userName, message, time);
+	}
+});
+
+function appendMessage(userName, message, time) {
+    const messagesContainer = document.getElementById("messages-container");
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message");
+    messageElement.style.margin = "20px";
+
+    const timeContainer = document.createElement("div");
+    timeContainer.classList.add("time-container");
+    timeContainer.innerText = time;
+
+    messageElement.innerHTML = `<strong>${userName}</strong><p>${message}</p>`;
+    messageElement.appendChild(timeContainer);
+
+    messageElement.style.display = "flex";
+    messageElement.style.flexDirection = "column";
+    messageElement.style.alignItems = "flex-start";
+    messageElement.style.textAlign = "left";
+    messageElement.style.position = "relative";
+    timeContainer.style.position = "absolute";
+    timeContainer.style.right = "0";
+    timeContainer.style.top = "50%";
+    timeContainer.style.transform = "translateY(-50%)";
+    timeContainer.style.color = "#999999";
+
+    messagesContainer.appendChild(messageElement);
+}
+
