@@ -54,7 +54,14 @@ function webrtc() {
 			});
 
 			socket.on("user-connected", (userId, customName) => {
-				console.log("user connected: " + userId + "\nName: " + customName);
+				const joinmp3 = new Audio("/assets/join.mp3");
+				joinmp3.oncanplaythrough = () => {
+					joinmp3.play();
+					joinmp3.onended = () => {
+						joinmp3.remove();
+					};
+				};
+
 				connectToNewUser(userId, stream, customName);
 			});
 		});
@@ -70,7 +77,14 @@ function webrtc() {
 	});
 
 	socket.on("user-disconnected", (userId) => {
-		console.log("user disconnected: " + userId);
+		const leavemp3 = new Audio("/assets/leave.mp3");
+		leavemp3.oncanplaythrough = () => {
+			leavemp3.play();
+			leavemp3.onended = () => {
+				leavemp3.remove();
+			};
+		};
+
 		if (document.getElementById(userId))
 			document.getElementById(userId).remove();
 		if (peers[userId]) {
@@ -81,6 +95,13 @@ function webrtc() {
 
 	myPeer.on("open", (id) => {
 		socket.emit("join-room", ROOM_ID, id, myPeer.customName);
+		const joinmp3 = new Audio("/assets/join.mp3");
+		joinmp3.oncanplaythrough = () => {
+			joinmp3.play();
+			joinmp3.onended = () => {
+				joinmp3.remove();
+			};
+		};
 	});
 
 	function connectToNewUser(userId, stream, customName) {
@@ -162,6 +183,11 @@ function getCurrentTime() {
 }
 
 document.getElementById("send-button").addEventListener("click", sendMessage);
+document.getElementById("message-input").addEventListener("keydown", (e) => {
+	if (e.key === "Enter") {
+		sendMessage();
+	}
+});
 
 function sendMessage() {
 	const messageInput = document.getElementById("message-input");
@@ -181,34 +207,40 @@ function sendMessage() {
 socket.on("receive_message", ({ name, message, time }) => {
 	const userName = name ? name : userId;
 	if (userName !== myPeer.customName) {
+		const messagemp3 = new Audio("/assets/message.mp3");
+		messagemp3.volume = 0.3;
+		messagemp3.oncanplaythrough = () => {
+			messagemp3.play();
+			messagemp3.onended = () => {
+				messagemp3.remove();
+			};
+		};
 		appendMessage(userName, message, time);
 	}
 });
 
 function appendMessage(userName, message, time) {
-    const messagesContainer = document.getElementById("messages-container");
-    const messageElement = document.createElement("div");
-    messageElement.classList.add("message");
-    messageElement.style.margin = "20px";
+	const messagesContainer = document.getElementById("messages-container");
+	const messageElement = document.createElement("div");
+	messageElement.classList.add("message");
+	messageElement.style.margin = "20px";
 
-    const timeContainer = document.createElement("div");
-    timeContainer.classList.add("time-container");
-    timeContainer.innerText = time;
+	const timeContainer = document.createElement("div");
+	timeContainer.classList.add("time-container");
+	timeContainer.innerText = time;
 
-    messageElement.innerHTML = `<strong>${userName}</strong><p>${message}</p>`;
-    messageElement.appendChild(timeContainer);
+	messageElement.innerHTML = `<strong>${userName}</strong><p style="word-wrap: break-word; overflow-wrap: break-word; max-width: 32vh;">${message}</p>`;
+	messageElement.appendChild(timeContainer);
 
-    messageElement.style.display = "flex";
-    messageElement.style.flexDirection = "column";
-    messageElement.style.alignItems = "flex-start";
-    messageElement.style.textAlign = "left";
-    messageElement.style.position = "relative";
-    timeContainer.style.position = "absolute";
-    timeContainer.style.right = "0";
-    timeContainer.style.top = "50%";
-    timeContainer.style.transform = "translateY(-50%)";
-    timeContainer.style.color = "#999999";
+	/* 	messageElement.style.display = "flex";
+	messageElement.style.flexDirection = "column";
+	messageElement.style.alignItems = "flex-start";
+	messageElement.style.textAlign = "left"; */
+	messageElement.style.position = "relative";
+	timeContainer.style.position = "absolute";
+	timeContainer.style.right = "0";
+	timeContainer.style.top = "110%";
+	timeContainer.style.color = "#999999";
 
-    messagesContainer.appendChild(messageElement);
+	messagesContainer.appendChild(messageElement);
 }
-

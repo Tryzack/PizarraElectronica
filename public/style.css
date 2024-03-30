@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "Circular Spotify Text Medium";
-	src: url("../assets/fonts/CircularSpotifyText-Medium.otf") format("opentype");
+	src: url("/assets/fonts/CircularSpotifyText-Medium.otf") format("opentype");
 }
 
 * {
@@ -183,6 +183,7 @@ canvas {
 	border-radius: 7px;
 	margin-top: 10px;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #input-container {

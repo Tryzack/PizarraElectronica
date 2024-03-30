@@ -93,9 +93,9 @@ modalContent.id = "modal-content";
 let modalInput = document.createElement("input");
 let modalButton = document.createElement("button");
 let h1 = document.createElement("h1");
-h1.innerText = "Welcome to the whiteboard! Please enter your name";
+h1.innerText = "Bienvenido a la pizarra, por favor ingresa tu nombre";
 modalInput.setAttribute("type", "text");
-modalInput.setAttribute("placeholder", "Enter your name");
+modalInput.setAttribute("placeholder", "e.g. Jubert Perz");
 modalButton.innerText = "Submit";
 
 modalButton.addEventListener("click", () => {
