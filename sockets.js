@@ -55,6 +55,15 @@ module.exports = (io) => {
 			socket.on("mute-status", (userId, isMuted) => {
 				io.to(roomId).emit("mute-status", userId, isMuted);
 			});
+
+			socket.on("send_message", ({ name, message }) => {
+				io.to(roomId).emit("receive_message", { name, message });
+			});
+
+			socket.on("receive_message", ({ name, message }) => {
+				const userName = name ? name : userId;
+				appendMessage(userName, message);
+			});
 		});
 	});
 };

@@ -150,3 +150,31 @@ function webrtc() {
 		console.error("Peer error:", error);
 	});
 }
+
+document.getElementById("send-button").addEventListener("click", sendMessage);
+
+function sendMessage() {
+	const messageInput = document.getElementById("message-input");
+	const message = messageInput.value.trim();
+	if (message !== "") {
+		socket.emit("send_message", { name: myPeer.customName, message });
+		messageInput.value = "";
+		appendMessage(myPeer.customName, message);
+	}
+}
+
+socket.on("receive_message", ({ name, message }) => {
+	const userName = name ? name : userId;
+	if (userName !== myPeer.customName) {
+		appendMessage(userName, message);
+	}
+});
+
+function appendMessage(userName, message) {
+    const messagesContainer = document.getElementById("messages-container");
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message");
+    messageElement.innerHTML = `<strong>${userName}</strong><br>${message}`;
+    messagesContainer.appendChild(messageElement);
+    messageElement.style.padding = "10px";
+}
