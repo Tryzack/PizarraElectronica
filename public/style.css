@@ -234,10 +234,34 @@ canvas {
 	background-color: white;
 }
 
+#pencil-size-container {
+	position: absolute;
+	top: 13.5%;
+	left: 10%;
+	height: 90px;
+	width: 350px;
+	background-color: #353535;
+	display: none;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	justify-items: center;
+	border-radius: 10px;
+}
+
+#pencil-size-container button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 68px;
+	height: 68px;
+	border-radius: 5px;
+	background-color: #131313;
+}
+
 #buttons-wrapper {
 	position: absolute;
 	display: none;
-	top: 60%;
+	top: 50%;
 	left: 10%;
 	width: 200px;
 	height: 250px;

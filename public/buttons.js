@@ -1,3 +1,5 @@
+document.getElementById("buttons-wrapper").style.display = "none";
+
 document.getElementById("selectColor").addEventListener("click", () => {
 	let element = document.getElementById("buttons-wrapper");
 	if (element.style.display === "none") {
@@ -42,7 +44,7 @@ document.getElementById("pencil").addEventListener("click", () => {
 
 document.getElementById("eraser").addEventListener("click", () => {
 	mouse.color = eraser;
-	line_width = 20;
+	line_width = selected_width;
 	document.getElementById("selected-color").style.backgroundColor =
 		mouse.color;
 	document.getElementById("buttons-wrapper").style.display = "none";
@@ -51,6 +53,35 @@ document.getElementById("eraser").addEventListener("click", () => {
 socket.on("clear_canvas", () => {
 	context.fillStyle = "white";
 	context.fillRect(0, 0, canvas.width, canvas.height);
+});
+
+document.getElementById("pencil-size-container").style.display = "none";
+
+document.getElementById("pencil-size").addEventListener("click", () => {
+	element = document.getElementById("pencil-size-container");
+	if (element.style.display === "none") {
+		element.style.display = "grid";
+	} else {
+		element.style.display = "none";
+	}
+});
+
+document.getElementById("large-size").addEventListener("click", () => {
+	selected_width = 10;
+	line_width = selected_width;
+	document.getElementById("pencil-size-container").style.display = "none";
+});
+
+document.getElementById("medium-size").addEventListener("click", () => {
+	selected_width = 5;
+	line_width = selected_width;
+	document.getElementById("pencil-size-container").style.display = "none";
+});
+
+document.getElementById("small-size").addEventListener("click", () => {
+	selected_width = 2;
+	line_width = selected_width;
+	document.getElementById("pencil-size-container").style.display = "none";
 });
 
 //show modal that ask for the name of the user and wont let the user draw until the name is set
@@ -112,7 +143,7 @@ function handleCanvasClick(event) {
 				y: textY / height,
 				color: color,
 			});
-			line_width = 2;
+			line_width = selected_width;
 		}
 	}
 }

@@ -67,6 +67,7 @@ module.exports = (io) => {
 
 			socket.on("clear_canvas", () => {
 				rooms[roomId].line_history = [];
+				rooms[roomId].text_history = [];
 				io.to(roomId).emit("clear_canvas");
 			});
 

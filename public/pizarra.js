@@ -15,6 +15,7 @@ let height = window.innerHeight;
 let color = mouse.color;
 let eraser = "#ffffff";
 let line_width = 2;
+let selected_width = 2;
 
 let socket = io();
 
@@ -60,15 +61,17 @@ socket.on("draw_text", (data) => {
 
 function mainLoop() {
 	if (mouse.click && mouse.move && mouse.pos_prev) {
-		socket.emit("draw_line", {
-			line: [mouse.pos, mouse.pos_prev],
-			color: mouse.color,
-			size: line_width,
-			userId: myPeer.id,
-			userName: name,
-		});
-		console.log(myPeer.id);
-		mouse.move = false;
+		if (!isTyping) {
+			socket.emit("draw_line", {
+				line: [mouse.pos, mouse.pos_prev],
+				color: mouse.color,
+				size: line_width,
+				userId: myPeer.id,
+				userName: name,
+			});
+			console.log(myPeer.id);
+			mouse.move = false;
+		}
 	}
 	mouse.pos_prev = { x: mouse.pos.x, y: mouse.pos.y };
 	setTimeout(mainLoop, 25);
