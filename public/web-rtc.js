@@ -151,30 +151,68 @@ function webrtc() {
 	});
 }
 
+function getCurrentTime() {
+	const currentTime = new Date();
+	let hours = currentTime.getHours();
+	let minutes = currentTime.getMinutes();
+	const ampm = hours >= 12 ? "PM" : "AM";
+	hours = hours % 12;
+	hours = hours ? hours : 12; // Hacer que las 0 horas se muestren como 12
+	minutes = minutes < 10 ? "0" + minutes : minutes; // Añadir un 0 delante de los minutos si es menor que 10
+	const formattedTime = hours + ":" + minutes + " " + ampm;
+	return formattedTime;
+}
+
 document.getElementById("send-button").addEventListener("click", sendMessage);
 
 function sendMessage() {
 	const messageInput = document.getElementById("message-input");
 	const message = messageInput.value.trim();
 	if (message !== "") {
-		socket.emit("send_message", { name: myPeer.customName, message });
+		const currentTime = getCurrentTime(); // Obtener la hora actual en el nuevo formato
+		socket.emit("send_message", {
+			name: myPeer.customName,
+			message,
+			time: currentTime,
+		});
 		messageInput.value = "";
-		appendMessage(myPeer.customName, message);
+		appendMessage(myPeer.customName, message, currentTime);
 	}
 }
 
-socket.on("receive_message", ({ name, message }) => {
+socket.on("receive_message", ({ name, message, time }) => {
 	const userName = name ? name : userId;
 	if (userName !== myPeer.customName) {
-		appendMessage(userName, message);
+		appendMessage(userName, message, time);
 	}
 });
 
-function appendMessage(userName, message) {
+function appendMessage(userName, message, time) {
     const messagesContainer = document.getElementById("messages-container");
     const messageElement = document.createElement("div");
     messageElement.classList.add("message");
-    messageElement.innerHTML = `<strong>${userName}</strong><br>${message}`;
+    messageElement.style.margin = "20px"; // Agregamos un margen de 5px alrededor de cada mensaje
+
+    // Creamos un elemento adicional para contener la hora
+    const timeContainer = document.createElement("div");
+    timeContainer.classList.add("time-container");
+    timeContainer.innerText = time;
+
+    messageElement.innerHTML = `<strong>${userName}</strong><p>${message}</p>`;
+    messageElement.appendChild(timeContainer); // Agregamos el contenedor de la hora como hijo del mensaje
+
+    // Aplicamos estilos
+    messageElement.style.display = "flex"; // Utilizamos flexbox para alinear elementos
+    messageElement.style.flexDirection = "column"; // Apilamos elementos verticalmente
+    messageElement.style.alignItems = "flex-start"; // Alineamos los elementos a la izquierda
+    messageElement.style.textAlign = "left"; // Alineamos el texto del mensaje a la izquierda
+    messageElement.style.position = "relative"; // Hacemos el contenedor de mensaje relativo para posicionar la hora
+    timeContainer.style.position = "absolute"; // Hacemos el contenedor de la hora absoluto para posicionarlo
+    timeContainer.style.right = "0"; // Alineamos la hora a la derecha
+    timeContainer.style.top = "50%"; // Centramos verticalmente la hora
+    timeContainer.style.transform = "translateY(-50%)"; // Corregimos el centrado vertical de la hora
+    timeContainer.style.color = "#999999"; // Cambiamos el color de la hora
+
     messagesContainer.appendChild(messageElement);
-    messageElement.style.padding = "10px";
 }
+
