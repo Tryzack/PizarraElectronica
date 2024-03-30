@@ -1,9 +1,8 @@
-let peers = {}; // Use let instead of const to allow modification
+let peers = {};
 let myPeer;
 let isMuted = false;
 const myAudio = document.createElement("audio");
 
-// function to toggle the mute state of the audio
 function toggleMute() {
 	isMuted = !isMuted;
 	myAudio.srcObject.getTracks().forEach((track) => {
@@ -129,7 +128,6 @@ function webrtc() {
 		svg.setAttribute("viewBox", "0 0 30 30");
 		svg.setAttribute("fill", "none");
 		svg.style.flexBasis = "10%";
-		/* svg.setAttribute("xmlns", "http://www.w3.org/2000/svg"); */
 		svg.innerHTML = `
 		<path d="M15 16.25C18.4518 16.25 21.25 13.4518 21.25 10C21.25 6.54822 18.4518 3.75 15 3.75C11.5482 3.75 8.75 6.54822 8.75 10C8.75 13.4518 11.5482 16.25 15 16.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 		<path d="M25 26.25C25 23.5978 23.9464 21.0543 22.0711 19.1789C20.1957 17.3036 17.6522 16.25 15 16.25C12.3478 16.25 9.8043 17.3036 7.92893 19.1789C6.05357 21.0543 5 23.5978 5 26.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -157,8 +155,8 @@ function getCurrentTime() {
 	let minutes = currentTime.getMinutes();
 	const ampm = hours >= 12 ? "PM" : "AM";
 	hours = hours % 12;
-	hours = hours ? hours : 12; // Hacer que las 0 horas se muestren como 12
-	minutes = minutes < 10 ? "0" + minutes : minutes; // Añadir un 0 delante de los minutos si es menor que 10
+	hours = hours ? hours : 12;
+	minutes = minutes < 10 ? "0" + minutes : minutes;
 	const formattedTime = hours + ":" + minutes + " " + ampm;
 	return formattedTime;
 }

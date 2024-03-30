@@ -243,17 +243,17 @@ canvas {
 	height: 10px;
 	border-radius: 100%;
 	background-color: #ffeb32;
-	animation: pulse 1s infinite alternate; /* Define la animación */
+	animation: pulse 1s infinite alternate;
 }
 
 @keyframes pulse {
 	0% {
-		transform: scale(1); /* Tamaño normal */
-		opacity: 1; /* Opacidad completa */
+		transform: scale(1);
+		opacity: 1;
 	}
 	100% {
-		transform: scale(1.2); /* Aumenta un poco el tamaño */
-		opacity: 0.5; /* Opacidad reducida */
+		transform: scale(1.2);
+		opacity: 0.5;
 	}
 }
 
