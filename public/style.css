@@ -320,3 +320,9 @@ canvas {
 	gap: 20px;
 	flex-direction: row;
 }
+.audioUser {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex-direction: row;
+}
