@@ -21,6 +21,9 @@ let socket = io();
 canvas.width = width;
 canvas.height = height;
 
+context.fillStyle = 'white';
+ context.fillRect(0, 0, canvas.width, canvas.height);
+
 canvas.addEventListener("mousedown", (e) => {
 	mouse.click = true;
 });
