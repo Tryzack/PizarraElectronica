@@ -35,7 +35,7 @@ document.getElementById("clear-button").addEventListener("click", () => {
 });
 
 document.getElementById("pencil").addEventListener("click", () => {
-	line_width = 2;
+	line_width = selected_width;
 	mouse.color = color;
 	document.getElementById("selected-color").style.backgroundColor =
 		mouse.color;
@@ -44,7 +44,7 @@ document.getElementById("pencil").addEventListener("click", () => {
 
 document.getElementById("eraser").addEventListener("click", () => {
 	mouse.color = eraser;
-	line_width = selected_width;
+	line_width = 50;
 	document.getElementById("selected-color").style.backgroundColor =
 		mouse.color;
 	document.getElementById("buttons-wrapper").style.display = "none";
