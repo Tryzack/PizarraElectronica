@@ -7,19 +7,19 @@ module.exports = (io) => {
 				rooms[roomId] = { users: 1 };
 			} else {
 				rooms[roomId].users++;
-				for (let i in rooms[roomId].line_history) {
-					socket.emit("draw_line", {
-						line: rooms[roomId].line_history[i].line,
-						color: rooms[roomId].line_history[i].color,
-						width: rooms[roomId].line_history[i].width,
-					});
-				}
 				for (let i in rooms[roomId].text_history) {
 					socket.emit("draw_text", {
 						text: rooms[roomId].text_history[i].text,
 						color: rooms[roomId].text_history[i].color,
 						x: rooms[roomId].text_history[i].x,
 						y: rooms[roomId].text_history[i].y,
+					});
+				}
+				for (let i in rooms[roomId].line_history) {
+					socket.emit("draw_line", {
+						line: rooms[roomId].line_history[i].line,
+						color: rooms[roomId].line_history[i].color,
+						width: rooms[roomId].line_history[i].width,
 					});
 				}
 			}
