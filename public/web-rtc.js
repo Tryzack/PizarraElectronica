@@ -106,7 +106,7 @@ function webrtc() {
 
 	function connectToNewUser(userId, stream, customName) {
 		let received = false;
-		function call() {
+		function thisCall() {
 			const call = myPeer.call(userId, stream, {
 				metadata: { name: myPeer.customName },
 			});
@@ -119,14 +119,14 @@ function webrtc() {
 				audio.remove();
 			});
 			peers[userId] = call;
+			setTimeout(() => {
+				if (!received) {
+					thisCall();
+				}
+			}, 500);
 		}
 
-		call();
-		setTimeout(() => {
-			if (!received) {
-				call();
-			}
-		}, 500);
+		thisCall();
 	}
 
 	function addAudioStream(audio, stream, id, name) {
@@ -232,10 +232,6 @@ function appendMessage(userName, message, time) {
 	messageElement.innerHTML = `<strong>${userName}</strong><p style="word-wrap: break-word; overflow-wrap: break-word; max-width: 32vh;">${message}</p>`;
 	messageElement.appendChild(timeContainer);
 
-	/* 	messageElement.style.display = "flex";
-	messageElement.style.flexDirection = "column";
-	messageElement.style.alignItems = "flex-start";
-	messageElement.style.textAlign = "left"; */
 	messageElement.style.position = "relative";
 	timeContainer.style.position = "absolute";
 	timeContainer.style.right = "0";
